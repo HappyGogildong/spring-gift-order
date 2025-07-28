@@ -25,7 +25,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
         Object handler) throws Exception {
 
-ㅂ        String token = request.getHeader("Authorization");
+        String token = request.getHeader("Authorization");
         String userRole = jwtTokenHandler.getUserRoleFromToken(token);
 
         if (userRole.equals(USER_ROLE)) {
