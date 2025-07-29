@@ -135,6 +135,16 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception);
     }
 
+    @ResponseBody
+    @ExceptionHandler(MessageNotSentException.class)
+    public ResponseEntity<ExceptionResponseDto> handleMessageNotSentException(
+        MessageNotSentException e
+    ) {
+        ExceptionResponseDto exception = ExceptionResponseDto.singleIssue(e.getMessage(),
+            LocalDateTime.now());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception);
+    }
+
     @ExceptionHandler(KakaoApproveException.class)
     public String handleKakaoApproveException(
         KakaoApproveException e,
