@@ -35,7 +35,7 @@ public class KakaoAuthService {
         this.kakaoTokenRepository = kakaoTokenRepository;
     }
 
-    public ResponseEntity<KakaoAuthTokenResponse> getAuthToken(String authKey) {
+    public ResponseEntity<Void> getAuthToken(String authKey) {
         ResponseEntity<KakaoAuthTokenResponse> response = null;
 
         var body = new LinkedMultiValueMap<String, String>();
