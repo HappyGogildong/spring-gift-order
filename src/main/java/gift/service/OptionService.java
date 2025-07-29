@@ -3,7 +3,9 @@ package gift.service;
 import gift.dto.request.OptionRequestDto;
 import gift.dto.response.OptionResponseDto;
 import gift.entity.Option;
+import gift.entity.Product;
 import java.util.List;
+import java.util.Optional;
 
 public interface OptionService {
 
@@ -19,4 +21,8 @@ public interface OptionService {
     void subtract(Long optionId, int sub);
 
     List<OptionResponseDto> getOptions(Long productId);
+
+    Product getProductByOptionId(Long optionId);
+
+    Optional<Option> findOptionById(Long optionId);
 }
