@@ -1,7 +1,11 @@
 package gift.kakao;
 
 import gift.dto.response.KakaoAuthTokenResponse;
+import gift.entity.MemberKakaoToken;
 import gift.exception.KakaoTokenException;
+import gift.repository.KakaoTokenRepository;
+import java.time.LocalDateTime;
+import java.util.Objects;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +24,16 @@ public class KakaoAuthService {
     private String redirectUri;
 
     private final RestClient kakaoRestClient;
+    private final KakaoMessageInterface kakaoMessageInterface;
+    private final KakaoTokenRepository kakaoTokenRepository;
 
-    public KakaoAuthService(RestClient kakaoRestClient) {
+    public KakaoAuthService(
+        RestClient kakaoRestClient,
+        KakaoMessageInterface kakaoMessageInterface, KakaoTokenRepository kakaoTokenRepository) {
         this.kakaoRestClient = kakaoRestClient;
+        this.kakaoMessageInterface = kakaoMessageInterface;
+        this.kakaoTokenRepository = kakaoTokenRepository;
     }
-
 
     public ResponseEntity<KakaoAuthTokenResponse> getAuthToken(String authKey) {
         ResponseEntity<KakaoAuthTokenResponse> response = null;
@@ -49,7 +58,35 @@ public class KakaoAuthService {
         catch (Exception e) {
             throw new KakaoTokenException(e.getMessage());
         }
-        return response;
+
+        String email = getUserEmail(response.getBody().accessToken());
+        saveToken(email, response.getBody());
+
+        return ResponseEntity.ok().build();
+    }
+
+    public String getUserEmail(String kakaoToken){
+        return Objects.requireNonNull(kakaoMessageInterface
+                .getUserInfo(kakaoToken)
+                .getBody())
+            .kakaoAccount()
+            .email();
+    }
+
+    public String getKakaoTokenByEmail(String email){
+        return kakaoTokenRepository.findAccessTokenByEmail(email);
+    }
+
+    public void saveToken(String email, KakaoAuthTokenResponse tokenDto){
+        MemberKakaoToken memberKakaoToken = new MemberKakaoToken();
+        memberKakaoToken.setEmail(email);
+        memberKakaoToken.setAccessToken(tokenDto.accessToken());
+        memberKakaoToken.setRefreshToken(tokenDto.refreshToken());
+        memberKakaoToken.setAccessTokenexpiresAt(
+            LocalDateTime.now()
+                .plusSeconds(tokenDto.expiresIn()));
+
+        kakaoTokenRepository.save(memberKakaoToken);
     }
 
 }
