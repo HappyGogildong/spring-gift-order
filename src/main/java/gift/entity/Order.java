@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,4 +33,37 @@ public class Order {
 
     @Column(nullable = false)
     private LocalDateTime orderDateTime;
+
+    @Column(nullable = true)
+    @Size(max = 200)
+    private String message;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setOption(Option option) {
+        this.option = option;
+    }
+    public Option getOption() {
+        return option;
+    }
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+    public Integer getQuantity() {
+        return quantity;
+    }
+    public void setOrderDateTime(LocalDateTime orderDateTime) {
+        this.orderDateTime = orderDateTime;
+    }
+    public LocalDateTime getOrderDateTime() {
+        return orderDateTime;
+    }
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    public String getMessage() {
+        return message;
+    }
 }
