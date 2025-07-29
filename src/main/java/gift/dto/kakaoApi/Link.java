@@ -14,4 +14,8 @@ public record Link (
 
 ){
 
+    public Link(String webUrl)
+    {
+        this(webUrl, webUrl, webUrl, webUrl);
+    }
 }

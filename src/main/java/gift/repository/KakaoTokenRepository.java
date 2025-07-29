@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KakaoTokenRepository extends JpaRepository<MemberKakaoToken, Integer> {
 
-    String findAccessTokenByEmail(String email);
+    MemberKakaoToken findByEmail(String email);
 }

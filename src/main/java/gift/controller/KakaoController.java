@@ -1,8 +1,6 @@
 package gift.controller;
 
-import gift.dto.response.KakaoAuthTokenResponse;
 import gift.kakao.KakaoAuthService;
-import gift.kakao.KakaoMessageInterface;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

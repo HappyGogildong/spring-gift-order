@@ -34,7 +34,7 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDateTime;
 
-    @Column(nullable = true)
+    @Column()
     @Size(max = 200)
     private String message;
 

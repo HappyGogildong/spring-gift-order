@@ -5,7 +5,6 @@ import gift.dto.request.OrderRequestDto;
 import gift.dto.response.OrderResponseDto;
 import gift.service.OrderService;
 import gift.wishPreProcess.LoginMember;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

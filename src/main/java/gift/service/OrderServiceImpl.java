@@ -24,7 +24,6 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderServiceImpl(
         OptionService optionService,
-        ProductService productService,
         WishService wishService,
         MemberService memberService,
         KakaoMessageService kakaoMessageService,

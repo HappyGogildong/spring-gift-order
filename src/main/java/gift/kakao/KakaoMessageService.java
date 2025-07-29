@@ -21,7 +21,7 @@ public class KakaoMessageService {
 
     public KakaoMessageService(
         KakaoMessageInterface kakaoMessageInterface,
-        KakaoAuthService kakaoAuthService, ProductService productService) {
+        KakaoAuthService kakaoAuthService) {
         this.kakaoMessageInterface = kakaoMessageInterface;
         this.kakaoAuthService = kakaoAuthService;
     }

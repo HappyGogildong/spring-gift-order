@@ -38,7 +38,7 @@ public class KakaoAuthService {
     }
 
     public ResponseEntity<Void> getAuthToken(String authKey) {
-        ResponseEntity<KakaoAuthTokenResponse> response = null;
+        ResponseEntity<KakaoAuthTokenResponse> response;
 
         var body = new LinkedMultiValueMap<String, String>();
         body.add("grant_type", "authorization_code");
