@@ -9,8 +9,8 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "member_token")
-public class MemberToken {
+@Table(name = "member_kakao_token")
+public class MemberKakaoToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
