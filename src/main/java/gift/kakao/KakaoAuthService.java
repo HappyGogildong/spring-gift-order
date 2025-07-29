@@ -29,7 +29,9 @@ public class KakaoAuthService {
 
     public KakaoAuthService(
         RestClient kakaoRestClient,
-        KakaoMessageInterface kakaoMessageInterface, KakaoTokenRepository kakaoTokenRepository) {
+        KakaoMessageInterface kakaoMessageInterface,
+        KakaoTokenRepository kakaoTokenRepository)
+    {
         this.kakaoRestClient = kakaoRestClient;
         this.kakaoMessageInterface = kakaoMessageInterface;
         this.kakaoTokenRepository = kakaoTokenRepository;
@@ -67,14 +69,14 @@ public class KakaoAuthService {
 
     public String getUserEmail(String kakaoToken){
         return Objects.requireNonNull(kakaoMessageInterface
-                .getUserInfo(kakaoToken)
+                .getUserInfo("Bearer "+ kakaoToken)
                 .getBody())
-            .kakaoAccount()
-            .email();
+                .kakaoAccount()
+                .email();
     }
 
     public String getKakaoTokenByEmail(String email){
-        return kakaoTokenRepository.findAccessTokenByEmail(email);
+        return kakaoTokenRepository.findByEmail(email).getAccessToken();
     }
 
     public void saveToken(String email, KakaoAuthTokenResponse tokenDto){
@@ -83,8 +85,7 @@ public class KakaoAuthService {
         memberKakaoToken.setAccessToken(tokenDto.accessToken());
         memberKakaoToken.setRefreshToken(tokenDto.refreshToken());
         memberKakaoToken.setAccessTokenexpiresAt(
-            LocalDateTime.now()
-                .plusSeconds(tokenDto.expiresIn()));
+            LocalDateTime.now().plusSeconds(tokenDto.expiresIn()));
 
         kakaoTokenRepository.save(memberKakaoToken);
     }
