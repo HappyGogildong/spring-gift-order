@@ -35,7 +35,7 @@ public class KakaoClientConfig {
     }
 
     @Bean
-    public KakaoMessageInterface kakaoMessageService(RestClient kakaoRestClient) {
+    public KakaoMessageInterface createKakaoMessageClient(RestClient kakaoRestClient) {
 
         return HttpServiceProxyFactory
             .builder()
@@ -43,5 +43,4 @@ public class KakaoClientConfig {
             .build()
             .createClient(KakaoMessageInterface.class);
     }
-
 }
