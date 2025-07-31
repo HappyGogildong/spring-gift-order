@@ -1,19 +1,18 @@
-package gift.dto.response;
+package gift.dto.kakaoApi;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.List;
 
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public record KakaoAuthTokenResponse(
+public record KakaoMessageRequest(
 
-    String tokenType,
-    String accessToken,
-    int expiresIn,
-    String refreshToken,
-    int refreshTokenExpiresIn,
-    String scope
+    String objectType,
+    String text,
+    Link link,
+    String buttonTitle,
+    List<Button> buttons
 ) {
 
 }

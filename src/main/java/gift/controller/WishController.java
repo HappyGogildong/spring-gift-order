@@ -2,7 +2,6 @@ package gift.controller;
 
 
 import gift.dto.request.WishAddRequestDto;
-import gift.dto.request.WishDeleteRequestDto;
 import gift.dto.request.WishUpdateRequestDto;
 import gift.dto.response.WishIdResponseDto;
 import gift.dto.response.WishResponseDto;
@@ -53,11 +52,10 @@ public class WishController {
 
     @DeleteMapping("/{wishId}")
     public ResponseEntity<Void> deleteWish(
-        @RequestBody @Valid WishDeleteRequestDto productName,
         @LoginMember String userEmail,
         @PathVariable Long wishId) {
 
-        wishService.deleteProduct(userEmail, wishId, productName);
+        wishService.deleteWish(userEmail, wishId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
@@ -67,7 +65,7 @@ public class WishController {
         @LoginMember String userEmail,
         @PathVariable Long wishId
     ) {
-        wishService.updateProduct(wishId, userEmail, wishUpdateRequestDto);
+        wishService.updateWish(wishId, userEmail, wishUpdateRequestDto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
