@@ -38,5 +38,5 @@ tasks.named('test') {
 
 jar {
     archiveBaseName.set("spring-gift-order")
-    archiveVersion.set("") // 버전 제거
+    archiveVersion.set("")
 }
