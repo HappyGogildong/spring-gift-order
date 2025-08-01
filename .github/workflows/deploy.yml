@@ -29,7 +29,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           source: ./build/libs/*.jar
-          target: /home/ubuntu/spring-gift-order.jar
+          target: /home/ubuntu/
 
       - name: Deploy and restart service on EC2
         uses: appleboy/ssh-action@v0.1.7
