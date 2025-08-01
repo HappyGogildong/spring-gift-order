@@ -47,7 +47,7 @@ jobs:
             sudo chown root:root /etc/spring-gift-order/spring-gift-order.env
             sudo chmod 600 /etc/spring-gift-order/spring-gift-order.env
             
-            sudo mv /home/ubuntu/spring-gift-order-*.jar /home/ubuntu/spring-gift-order.jar
+            sudo mv /home/ubuntu/build/libs/spring-gift-order-*.jar /home/ubuntu/build/libs/spring-gift-order.jar
 
             sudo systemctl daemon-reload
             sudo systemctl restart spring-gift-order
