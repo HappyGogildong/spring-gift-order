@@ -28,7 +28,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: build/libs/spring-gift-order.jar
+          source: ./build/libs/*.jar
           target: /home/ubuntu/spring-gift-order.jar
 
       - name: Deploy and restart service on EC2
@@ -49,3 +49,6 @@ jobs:
 
             sudo systemctl daemon-reload
             sudo systemctl restart spring-gift-order
+
+      - name: Check build output
+        run: ls -l build/libs/
