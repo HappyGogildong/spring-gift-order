@@ -35,3 +35,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+jar {
+    archiveBaseName.set("spring-gift-order")
+    archiveVersion.set("") // 버전 제거
+}
