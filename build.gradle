@@ -41,3 +41,7 @@ jar {
     archiveVersion.set("")
     enabled = false
 }
+
+bootJar {
+    mainClass.set('gift.Application')
+}
