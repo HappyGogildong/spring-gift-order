@@ -9,6 +9,7 @@ import gift.exception.OptionNotFoundException;
 import gift.repository.OptionRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -94,5 +95,16 @@ public class OptionServiceImpl implements OptionService {
         option.setQuantity(option.getQuantity() - sub);
 
         optionRepository.save(option);
+    }
+
+    @Override
+    public Product getProductByOptionId(Long optionId) {
+        return productService.
+            getProduct(optionRepository.findById(optionId).orElseThrow().getProductId());
+    }
+
+    @Override
+    public Optional<Option> findOptionById(Long optionId) {
+        return optionRepository.findById(optionId);
     }
 }

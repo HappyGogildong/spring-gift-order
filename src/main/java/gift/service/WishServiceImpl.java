@@ -2,10 +2,10 @@ package gift.service;
 
 import static gift.constant.PageSize.PAGE_SIZE;
 import gift.dto.request.WishAddRequestDto;
-import gift.dto.request.WishDeleteRequestDto;
 import gift.dto.request.WishUpdateRequestDto;
 import gift.dto.response.WishIdResponseDto;
 import gift.dto.response.WishResponseDto;
+import gift.entity.Product;
 import gift.entity.Wish;
 import gift.exception.ProductNotFoundException;
 import gift.exception.UnauthorizedWishListException;
@@ -13,6 +13,7 @@ import gift.exception.WishNotFoundException;
 import gift.repository.WishRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -66,10 +67,9 @@ public class WishServiceImpl implements WishService {
 
     @Transactional
     @Override
-    public void deleteProduct(
+    public void deleteWish(
         String email,
-        Long wishId,
-        WishDeleteRequestDto wishDeleteRequestDto) {
+        Long wishId) {
 
         if (!memberService.findMemberByEmail(email).getId()
             .equals(wishId)) {
@@ -83,7 +83,7 @@ public class WishServiceImpl implements WishService {
 
     @Transactional
     @Override
-    public void updateProduct(
+    public void updateWish(
         Long wishId,
         String email,
         WishUpdateRequestDto wishUpdateRequestDto) {
@@ -98,5 +98,12 @@ public class WishServiceImpl implements WishService {
         wish.setQuantity(wishUpdateRequestDto.quantity());
 
         wishRepository.save(wish);
+    }
+
+    @Override
+    public Optional<Wish> findWishByMemberIdAndProduct(Long memberId, Product product) {
+        return wishRepository.findAllByMemberId(memberId)
+            .stream()
+            .filter(wish -> wish.getProduct().equals(product)).findFirst();
     }
 }
