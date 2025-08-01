@@ -13,7 +13,7 @@ import org.springframework.web.service.annotation.PostExchange;
 @HttpExchange()
 public interface KakaoMessageInterface {
 
-    @PostExchange(value = "https://kapi.kakao.com/v2/api/talk/memo/default/send",
+    @PostExchange(value = "${https://kapi.kakao.com/v2/api/talk/memo/default/send}",
         contentType = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     ResponseEntity<Map<String, Object>> sendMessageToMySelf(
         @RequestHeader("Authorization") String token,
