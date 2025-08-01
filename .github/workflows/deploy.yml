@@ -41,7 +41,7 @@ jobs:
             echo "APP_JWT_SECRET_KEY=${{ secrets.APP_JWT_SECRET_KEY }}" > /tmp/spring-gift-order.env
             echo "CUSTOM_KAKAO_CLIENT_ID=${{ secrets.CUSTOM_KAKAO_CLIENT_ID }}" >> /tmp/spring-gift-order.env
             echo "CUSTOM_KAKAO_REDIRECT=${{ secrets.CUSTOM_KAKAO_REDIRECT }}" >> /tmp/spring-gift-order.env
-            echo "CUSTOM_KAKAO_USER_INFO=${{ secrets.CUSTOM_KAKAO_USER_INFO }}" > /tmp/spring-gift-order.env
+            echo "CUSTOM_KAKAO_USER_INFO=${{ secrets.CUSTOM_KAKAO_USER_INFO }}" >> /tmp/spring-gift-order.env
             echo "CUSTOM_KAKAO_SENDTO_MYSELF=${{ secrets.CUSTOM_KAKAO_SENDTO_MYSELF }}" >> /tmp/spring-gift-order.env
             echo "CUSTOM_KAKAO_AUTH_SERVER=${{ secrets.CUSTOM_KAKAO_AUTH_SERVER }}" >> /tmp/spring-gift-order.env
 
