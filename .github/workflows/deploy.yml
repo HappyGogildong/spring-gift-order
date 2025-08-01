@@ -52,5 +52,9 @@ jobs:
             sudo systemctl daemon-reload
             sudo systemctl restart spring-gift-order
 
-      - name: Check build output
-        run: ls -l build/libs/
+      - name: Verify JAR file
+        run: |
+          ls -la build/libs/
+          jar tf build/libs/*.jar | grep -i manifest
+          jar xf build/libs/*.jar META-INF/MANIFEST.MF
+          cat META-INF/MANIFEST.MF

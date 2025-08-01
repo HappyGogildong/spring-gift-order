@@ -39,4 +39,5 @@ tasks.named('test') {
 jar {
     archiveBaseName.set("spring-gift-order")
     archiveVersion.set("")
+    enabled = false
 }
